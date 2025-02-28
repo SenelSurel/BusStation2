@@ -10,12 +10,12 @@ class Districts extends Model
 
   protected $fillable = ['city'];
 
-    public function stationsAsDirection()
+    public function stationsAsDirection(): Districts|\Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Station::class, 'direction_id');
     }
 
-    public function stationsAsDestination()
+    public function stationsAsDestination(): Districts|\Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Station::class, 'destination_id');
     }
