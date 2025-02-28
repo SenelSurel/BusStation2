@@ -23,7 +23,6 @@ class Results extends Component
             'arrivalTime',
             'price'
         )->get();
-
         $this->loadTickets();
     }
 

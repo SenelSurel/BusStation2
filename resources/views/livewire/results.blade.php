@@ -1,5 +1,7 @@
+
 <div>
-{{--<div class="lg:max-w-[650px] lg:flex lg:justify-center">
+    {{--
+<div class="lg:max-w-[650px] lg:flex lg:justify-center">
     <p class="underline underline-offset-4 font-semibold text-lg lg:text-xl">Sonuçlar</p>
 </div>
 <div class="@container w-full mt-4 lg:flex lg:justify-center lg:flex-col">
@@ -10,7 +12,7 @@
             </div>
             <div class="card-title flex space-x-2 lg:space-x-8 items-center text-xs lg:text-sm">
                 <div class="text-center">
-                    <p>{{$stat->direction_id}}</p>
+                    <p>{{$stat->direction->city}}</p>
                     <p>{{ $stat->departureTime }}</p>
                 </div>
                 <div>
@@ -18,7 +20,7 @@
                 </div>
                 <div class="card-text flex items-center">
                     <div class="text-center max-w-[50px]">
-                        <p>{{$stat->destination_id}}</p>
+                        <p>{{$stat->destination->city}}</p>
                         <p>{{ $stat->arrivalTime }}</p>
                     </div>
                 </div>
@@ -44,5 +46,7 @@
         <div class="text-red-500 text-center mt-4">
             {{ session('error') }}
         </div>
-    @endif--}}
+    @endif
+    --}}
 </div>
+
