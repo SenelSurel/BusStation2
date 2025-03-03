@@ -11,7 +11,7 @@ class Results extends Component
 {
     public $stations;
     public $tickets = [];
-
+    public $resultsVisible = false;
     protected $listeners = ['ticketPurchased' => 'loadTickets'];
 
     public function mount(): void
@@ -31,37 +31,6 @@ class Results extends Component
         $this->tickets = Tank::where('user_id', auth()->id())->get();
     }
 
-    public function buyTicket($id): void
-    {
-        $pass = Station::find($id);
-
-        if (!$pass) {
-            session()->flash('error', 'Bilet bulunamadı.');
-            return;
-        }
-
-        $existingTicket = Tank::where([
-            'ticketImage' => $pass->brandLogo,
-            'depart' => $pass->departureTime,
-        ])->first();
-
-        if ($existingTicket) {
-            session()->flash('error', 'Bu bileti zaten satın aldınız !');
-            return;
-        }
-
-        Tank::create([
-            'ticketImage' => $pass->brandLogo,
-            'midWeek' => $pass->schedule === 'haftaIci' ? 1 : 0,
-            'weekEnd' => $pass->schedule === 'haftaSonu' ? 1 : 0,
-            'depart' => $pass->departureTime,
-            'arrive' => $pass->arrivalTime ?? null,
-            'user_id' => Auth::id(),
-        ]);
-
-        session()->flash('message', 'Bilet başarıyla satın alındı!');
-        $this->dispatch('ticketPurchased');
-    }
 
     public function render()
     {

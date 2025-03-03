@@ -18,11 +18,12 @@
                     @endforeach
                 </select>
                 <div class="mt-4 flex justify-evenly items-center">
-                    <div class="flex space-x-2">
-                        <input type="checkbox" name="Hafta içi" value="haftaIci" id="">
-                        <p class="text-white">Hafta içi</p>
-                        <input type="checkbox" name="Hafta sonu" value="haftaSonu" id="">
-                        <p class="text-white">Hafta sonu</p>
+                    <div class="flex space-x-3 items-center align-middle">
+                        <input wire:model="schedule" type="radio" value="haftaIci" id="haftaIci">
+                        <label for="haftaIci" class="text-white">Hafta içi</label>
+
+                        <input wire:model="schedule" type="radio" value="haftaSonu" id="haftaSonu">
+                        <label for="haftaSonu" class="text-white">Hafta sonu</label>
                     </div>
                     <button wire:click.prevent="findLocation" class="bg-yellow-500 py-2 px-8 rounded-full text-black" type="button">Ara</button>
                 </div>
@@ -47,8 +48,13 @@
                                 <p>{{ $stat->direction->city }}</p>
                                 <p>{{ $stat->departureTime }}</p>
                             </div>
-                            <div>
-                                <i class="fa-solid fa-arrow-right"></i>
+
+                            <div class="flex flex-col !justify-center space-y-1">
+                                <div class="flex justify-center font-semibold">
+                                    @if($stat->schedule == 'haftaIci') Hafta içi
+                                    @elseif($stat->schedule == 'haftaSonu') Hafta sonu
+                                    @endif</div>
+                                <i class="fa-solid fa-arrow-right !flex !justify-center"></i>
                             </div>
                             <div class="card-text flex items-center">
                                 <div class="text-center max-w-[50px]">

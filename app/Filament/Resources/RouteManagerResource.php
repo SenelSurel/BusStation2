@@ -135,9 +135,9 @@ class RouteManagerResource extends Resource
                 ->label('Firma'),
                 Tables\Columns\TextColumn::make('schedule')
                     ->label('Günler'),
-                Tables\Columns\TextColumn::make('direction_id')
+                Tables\Columns\TextColumn::make('direction.city')
                 ->label('Nereden'),
-                Tables\Columns\TextColumn::make('destination_id')
+                Tables\Columns\TextColumn::make('destination.city')
                 ->label('Nereye'),
                 Tables\Columns\TextColumn::make('departureTime')
                 ->label('Kalkış'),
