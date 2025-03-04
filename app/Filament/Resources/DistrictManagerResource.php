@@ -5,21 +5,19 @@ namespace App\Filament\Resources;
 use App\Filament\Resources\DistrictManagerResource\Pages;
 use App\Filament\Resources\DistrictManagerResource\RelationManagers;
 use App\Models\Districts;
-use Filament\Forms;
 use Filament\Forms\Components\TextInput;
 use Filament\Forms\Form;
 use Filament\Resources\Resource;
 use Filament\Tables;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Tables\Table;
-use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
+
 
 class DistrictManagerResource extends Resource
 {
     protected static ?string $model = Districts::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-rectangle-stack';
+    protected static ?string $navigationIcon = 'iconsax-bul-row-vertical';
 
     public static function form(Form $form): Form
     {

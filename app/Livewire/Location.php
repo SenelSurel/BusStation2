@@ -6,6 +6,7 @@ use App\Models\Districts;
 use App\Models\Station;
 use App\Models\Tank;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Attributes\On;
 use Livewire\Component;
 
 
@@ -22,25 +23,40 @@ class Location extends Component
     {
         $this->locations = Districts::all();
     }
-
-    public function buyTicket($id): void
+    #[On('buyTicket')]
+    public function updateSeats(): void
+    {
+        $this->stations = Station::query()->select('amount')->get();
+        $this->reset('amount');
+    }
+    public function buyTicket($id)
     {
         $pass = Station::find($id);
 
-        if (!$pass) {
+       /* if (!$pass) {
             session()->flash('error', 'Bilet bulunamadı.');
             return;
-        }
+        }*/
 
-        $existingTicket = Tank::where([
-            'ticketImage' => $pass->brandLogo,
-            'depart' => $pass->departureTime,
-        ])->first();
-
-        if ($existingTicket) {
-            session()->flash('error', 'Bu bileti zaten satın aldınız !');
+        $station = Station::find($id);
+        if($station && $station -> amount>0) {
+            $station-> amount -=1;
+            $station -> save();
+        }else {
+            session()->flash('error', 'Otobüs Dolu!');
             return;
         }
+
+
+        /*$existingTicket = Tank::where([
+            'ticketImage' => $pass->brandLogo,
+            'depart' => $pass->departureTime,
+        ])->first();*/
+
+        /*if ($existingTicket) {
+            session()->flash('error', 'Bu bileti zaten satın aldınız !');
+            return;
+        }*/
 
         Tank::create([
             'ticketImage' => $pass->brandLogo,

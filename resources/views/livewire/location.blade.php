@@ -66,10 +66,11 @@
                         <div class="font-semibold self-center">
                             <p class="items-center">{{ $stat->price }} TL</p>
                         </div>
-                        <div class="card-button content-center">
+                        <div class="card-button content-center self-center">
                             <button wire:click="buyTicket({{ $stat->id }})" class="bg-yellow-500 hover:bg-yellow-600 text-gray-100 py-2 px-4 rounded-lg">
                                 Al
                             </button>
+                            <p wire:model.live="stations">Koltuk Sayısı: {{$stat->amount}}</p>
                         </div>
                     </div>
                 @endforeach

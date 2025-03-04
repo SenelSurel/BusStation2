@@ -3,6 +3,6 @@
         <p>Biletlerim</p>
     </div>
 
-  <livewire:ticket/>
-    @livewireScripts
+    <livewire:ticket/>
+
 </x-layout>

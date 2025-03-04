@@ -8,11 +8,11 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Station extends Model
 {
-    use HasFactory;
+
 
     protected $table = 'stations';
 
-    protected $fillable = ['brand','brandLogo','departureTime','arrivalTime','schedule','price','user_id','destination_id','direction_id'];
+    protected $fillable = ['brand','brandLogo','departureTime','arrivalTime','schedule','price','user_id','destination_id','direction_id','amount'];
 
     public function direction(): BelongsTo
     {

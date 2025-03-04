@@ -7,6 +7,7 @@ use App\Filament\Resources\RouteManagerResource\RelationManagers;
 use App\Models\Station;
 use App\Models\Districts;
 use Filament\Forms;
+use Filament\Forms\Components\TextInput;
 use Filament\Resources\RelationManagers\RelationManager;
 use Filament\Forms\Components\Radio;
 use Filament\Forms\Form;
@@ -101,6 +102,21 @@ class RouteManagerResource extends Resource
                     ->rule('regex:/^([01][0-9]|2[0-3]):[0-5][0-9]$/')
                     ->helperText('Format: Saat : Dakika')
                 ->label('Varış'),
+                Forms\Components\TextInput::make('amount')
+                ->required()
+                ->default(3)
+                ->label('Koltuk Sayısı'),
+                Forms\Components\TextInput::make('price')
+                ->required()
+                ->label('Fiyat'),
+                Forms\Components\Select::make('schedule')
+                    ->required()
+                    ->native(false)
+                    ->label('Günler')
+                    ->options([
+                        'haftaIci' => 'Hafta içi',
+                        'haftaSonu' => 'Hafta sonu',
+                    ]),
                 Forms\Components\FileUpload::make('brandLogo')
                     ->label('Firma Logo')
                     ->required()
@@ -113,17 +129,6 @@ class RouteManagerResource extends Resource
                     ->disk('public')
                     ->visibility('public')
                     ->directory('/uploads'),
-                Forms\Components\TextInput::make('price')
-                ->required()
-                ->label('Fiyat'),
-                Forms\Components\Select::make('schedule')
-                    ->required()
-                    ->native(false)
-                    ->label('Günler')
-                    ->options([
-                        'haftaIci' => 'Hafta içi',
-                        'haftaSonu' => 'Hafta sonu',
-                    ]),
             ]);
     }
 

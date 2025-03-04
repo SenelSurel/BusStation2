@@ -66,7 +66,7 @@
     <main>
         {{$slot}}
     </main>
-<footer class="py-16 text-center text-sm text-white dark:text-white/70 bg-gray-800 w-full">
+<footer class="py-16 text-center text-sm text-white dark:text-white/70 bg-gray-800 w-full h-full">
     <p>Bus Station ©2025 | All rights are reserved.</p>
 </footer>
 <script>
