@@ -10,8 +10,9 @@
         "filament/filament": "3.2.57",
         "laravel/framework": "^11.31",
         "laravel/tinker": "^2.9",
-        "livewire/livewire": "^3.5",
-        "saade/blade-iconsax": "^1.2"
+        "livewire/livewire": "^3.6",
+        "saade/blade-iconsax": "^1.2",
+        "ext-http": "*"
     },
     "require-dev": {
         "fakerphp/faker": "^1.23",

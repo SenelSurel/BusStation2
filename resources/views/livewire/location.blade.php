@@ -4,14 +4,14 @@
         <div class="bg-gray-600 rounded-lg flex w-full py-12 justify-center shadow-lg lg:w-[60%] 2xl:w-[95%]">
             <form class="w-full space-x-4" action="" method="GET">
                 @csrf
-                <select id="from" wire:model="from" required class="bg-white rounded-lg p-2 w-[7rem] text-center items-center">
+                <select id="from" wire:model.live="from" required class="bg-white rounded-lg p-2 w-[7rem] text-center items-center">
                     <option selected hidden class="text-center items-center text-xs">Nereden</option>
                     @foreach($locations as $loc)
                         <option class="text-start items-center text-xs" value="{{ $loc->id }}">{{ $loc->city }}</option>
                     @endforeach
                 </select>
                 <i class="fa-solid fa-arrow-right text-white"></i>
-                <select id="to" wire:model="to" required class="bg-white rounded-lg p-2 w-[7rem] text-center items-center">
+                <select id="to" wire:model.live="to" required class="bg-white rounded-lg p-2 w-[7rem] text-center items-center">
                     <option selected hidden class="text-center items-center text-xs">Nereye</option>
                     @foreach($locations as $loc)
                         <option class="text-start items-center text-xs" value="{{ $loc->id }}">{{ $loc->city }}</option>
@@ -19,10 +19,10 @@
                 </select>
                 <div class="mt-4 flex justify-evenly items-center">
                     <div class="flex space-x-3 items-center align-middle">
-                        <input wire:model="schedule" type="radio" value="haftaIci" id="haftaIci">
+                        <input wire:model.live="schedule" type="radio" value="haftaIci" id="haftaIci">
                         <label for="haftaIci" class="text-white">Hafta içi</label>
 
-                        <input wire:model="schedule" type="radio" value="haftaSonu" id="haftaSonu">
+                        <input wire:model.live="schedule" type="radio" value="haftaSonu" id="haftaSonu">
                         <label for="haftaSonu" class="text-white">Hafta sonu</label>
                     </div>
                     <button wire:click.prevent="findLocation" class="bg-yellow-500 py-2 px-8 rounded-full text-black" type="button">Ara</button>
@@ -70,7 +70,7 @@
                             <button wire:click="buyTicket({{ $stat->id }})" class="bg-yellow-500 hover:bg-yellow-600 text-gray-100 py-2 px-4 rounded-lg">
                                 Al
                             </button>
-                            <p wire:model.live="stations">Koltuk Sayısı: {{$stat->amount}}</p>
+                            <p class="font-bold" wire:model.live="stations">Koltuk Sayısı: {{$stat->amount}}</p>
                         </div>
                     </div>
                 @endforeach

@@ -29,25 +29,24 @@ class Location extends Component
         $this->stations = Station::query()->select('amount')->get();
         $this->reset('amount');
     }
-    public function buyTicket($id)
+    public function buyTicket($id): void
     {
         $pass = Station::find($id);
 
-       /* if (!$pass) {
+       if (!$pass) {
             session()->flash('error', 'Bilet bulunamadı.');
             return;
-        }*/
+        }
 
         $station = Station::find($id);
-        if($station && $station -> amount>0) {
+        if($station -> amount>0) {
             $station-> amount -=1;
             $station -> save();
+
         }else {
             session()->flash('error', 'Otobüs Dolu!');
             return;
         }
-
-
         /*$existingTicket = Tank::where([
             'ticketImage' => $pass->brandLogo,
             'depart' => $pass->departureTime,

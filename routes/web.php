@@ -12,6 +12,7 @@ Route::get('/', function () {
 });
 Route::get('index', [Controller::class,'index'])->name('index');
 Route::get('tickets', [Controller::class,'tickets'])->name('tickets')->middleware('auth');
+Route::get('login', [Controller::class,'login'])->name('login');
 Route::get('/ticket/{id}', Ticket::class);
 
 

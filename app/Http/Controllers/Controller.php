@@ -12,5 +12,8 @@ class Controller extends BaseController{
     public function tickets(){
         return view('tickets');
     }
-
+    public function login()
+    {
+        return view('login');
+    }
 }
