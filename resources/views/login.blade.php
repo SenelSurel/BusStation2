@@ -15,8 +15,8 @@
 <body class="font-sans antialiased dark:bg-black dark:text-white/50 ">
 
 
-<main class="p-2 mt-4">
-    <livewire:log-account/>
+<main class="p-2 mt-4 mb-12">
+    <livewire:auth.login-account/>
 </main>
 <footer class="py-16 text-center text-sm text-white dark:text-white/70 bg-gray-800 w-full absolute bottom-0">
     <p>Bus Station ©2025 | All rights are reserved.</p>

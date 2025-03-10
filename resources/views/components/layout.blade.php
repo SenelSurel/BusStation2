@@ -43,12 +43,8 @@
                     </div>
                 </div>
             </div>
-            <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
-                <a href="{{route('login')}}" type="button" class="relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 focus:outline-hidden">
-                    <span class="absolute -inset-1.5"></span>
-                    Çıkış
-                </a>
-            </div>
+            @livewire('auth.logout')
+
         </div>
     </div>
 
@@ -63,6 +59,7 @@
     <main>
         {{$slot}}
     </main>
+
 <footer class="py-16 text-center text-sm text-white dark:text-white/70 bg-gray-800 w-full h-full">
     <p>Bus Station ©2025 | All rights are reserved.</p>
 </footer>
