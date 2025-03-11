@@ -2,38 +2,29 @@
 
 namespace App\Livewire;
 
-use App\Models\Station;
+
 use App\Models\Tank;
-use Illuminate\Routing\Route;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class Ticket extends Component
 {
-    public $stations;
+
     public $myTickets = [];
 
 
     public function mount(): void
     {
-        $this->myTickets =
-            Tank::query()->select(
-            'id',
-            'ticketImage',
-            'midWeek',
-            'weekEnd',
-            'fromWhere',
-            'toWhere',
-            'depart',
-            'arrive')->get();
+       $this->getTickets();
 
     }
 
-    public function useTicket($id): void
-    {
-        Tank::where('id', $id)->delete();
-        $this->myTickets =
-            Tank::query()->select(
+    public function getTickets():void {
+        $userId = Auth::guard('accounts')->id();
+
+        $this->myTickets = Tank::query()
+            ->where('user_id', $userId)
+            ->select(
                 'id',
                 'ticketImage',
                 'midWeek',
@@ -43,10 +34,17 @@ class Ticket extends Component
                 'depart',
                 'arrive')->get();
     }
+
+    public function useTicket($id): void
+    {
+        $userId = Auth::guard('accounts')->id();
+        Tank::query()->where('id', $id)->where('user_id', $userId)->delete();
+
+        $this->getTickets();
+
+    }
     public function render()
     {
-        return view('livewire.ticket', [
-            'tickets' => $this->myTickets,
-        ]);
+        return view('livewire.ticket');
     }
 }

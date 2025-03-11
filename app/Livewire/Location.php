@@ -5,6 +5,7 @@ namespace App\Livewire;
 use App\Models\Districts;
 use App\Models\Station;
 use App\Models\Tank;
+use Filament\Forms\Components\Livewire;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Attributes\On;
 use Livewire\Component;
@@ -19,6 +20,12 @@ class Location extends Component
     public $to = null;
     public $resultsVisible = false;
 
+
+
+    protected $listeners = [
+      'bought' => '$refresh',
+    ];
+
     public function mount(): void
     {
         $this->locations = Districts::all();
@@ -31,6 +38,7 @@ class Location extends Component
     }
     public function buyTicket($id): void
     {
+
         $pass = Station::find($id);
 
        if (!$pass) {
@@ -41,23 +49,18 @@ class Location extends Component
         $station = Station::find($id);
         if($station -> amount>0) {
             $station-> amount -=1;
+            $this->dispatch('bought');
             $station -> save();
-
         }else {
             session()->flash('error', 'Otobüs Dolu!');
             return;
         }
-        /*$existingTicket = Tank::where([
-            'ticketImage' => $pass->brandLogo,
-            'depart' => $pass->departureTime,
-        ])->first();*/
 
-        /*if ($existingTicket) {
-            session()->flash('error', 'Bu bileti zaten satın aldınız !');
-            return;
-        }*/
+        $userId= Auth::guard('accounts')->id();
+
 
         Tank::create([
+            'user_id' => $userId,
             'ticketImage' => $pass->brandLogo,
             'midWeek' => $pass->schedule === 'haftaIci' ? 1 : 0,
             'weekEnd' => $pass->schedule === 'haftaSonu' ? 1 : 0,
@@ -65,10 +68,10 @@ class Location extends Component
             'toWhere' =>  $pass->destination->city,
             'depart' => $pass->departureTime,
             'arrive' => $pass->arrivalTime ?? null,
-            'user_id' => Auth::id(),
+
         ]);
 
-        session()->flash('message', 'Bilet başarıyla satın alındı!');
+        session()->flash('message', 'Bilet satın alındı!');
         $this->dispatch('ticketPurchased');
     }
 

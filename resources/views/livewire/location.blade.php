@@ -40,8 +40,8 @@
             <div class="@container w-full mt-4 lg:flex lg:justify-center lg:flex-col">
                 @foreach($stations as $stat)
                     <div class="card border-gray-400 border-solid border rounded-lg py-4 flex justify-evenly lg:justify-around lg:min-w-[750px] lg:self-center text-sm mb-4 shadow-md">
-                        <div class="card-image flex">
-                            <img class="w-18 lg:w-24 h-16 lg:h-20 items-center" src="{{ asset($stat->brandLogo) }}" alt="brandLogo">
+                        <div class="card-image flex items-center">
+                            <img class="w-11 lg:w-24 h-9 lg:h-20 items-center" src="{{ asset($stat->brandLogo) }}" alt="brandLogo">
                         </div>
                         <div class="card-title flex space-x-2 lg:space-x-8 items-center text-xs lg:text-sm">
                             <div class="text-center">
@@ -66,11 +66,11 @@
                         <div class="font-semibold self-center">
                             <p class="items-center">{{ $stat->price }} TL</p>
                         </div>
-                        <div class="card-button content-center self-center">
+                        <div class="card-button content-center justify-self-end">
                             <button wire:click="buyTicket({{ $stat->id }})" class="bg-yellow-500 hover:bg-yellow-600 text-gray-100 py-2 px-4 rounded-lg">
                                 Al
                             </button>
-                            <p class="font-bold" wire:model.live="stations">Koltuk Sayısı: {{$stat->amount}}</p>
+                            <p class="font-bold text-xs" wire:model.live="stations">Koltuk Sayısı: {{$stat->amount}}</p>
                         </div>
                     </div>
                 @endforeach

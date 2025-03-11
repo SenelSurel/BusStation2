@@ -23,8 +23,12 @@ protected $hidden = [
 ];
 
 
-public function user()
+//public function user(): BelongsTo
+//{
+//return $this->belongsTo(User::class, 'email', 'email');
+//}
+public function tickets(): \Illuminate\Database\Eloquent\Relations\HasMany
 {
-return $this->belongsTo(User::class, 'email', 'email');
+    return $this->hasMany(Tank::class, 'user_id', 'id');
 }
 }

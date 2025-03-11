@@ -11,7 +11,7 @@
     <script src="https://kit.fontawesome.com/8769eb1509.js" crossorigin="anonymous"></script>
     @livewireStyles
 </head>
-<body class="font-sans antialiased dark:bg-black dark:text-white/50 ">
+<body class="font-sans antialiased dark:bg-black dark:text-white/50">
 
 <nav class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -44,7 +44,6 @@
                 </div>
             </div>
             @livewire('auth.logout')
-
         </div>
     </div>
 
@@ -60,7 +59,7 @@
         {{$slot}}
     </main>
 
-<footer class="py-16 text-center text-sm text-white dark:text-white/70 bg-gray-800 w-full h-full">
+<footer class="py-16 text-center text-sm text-white dark:text-white/70 bg-gray-800 w-full">
     <p>Bus Station ©2025 | All rights are reserved.</p>
 </footer>
 <script>
