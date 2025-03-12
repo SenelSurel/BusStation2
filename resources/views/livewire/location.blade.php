@@ -1,5 +1,5 @@
 <div>
-    <header class="grid grid-cols-1 items-center text-center gap-2 py-4 lg:flex lg:flex-col">
+    <header class="grid grid-cols-1 items-center text-center gap-2 py-4 lg:flex lg:flex-col ">
         <div><p class="text-lg font-semibold mb-4">K.K.T.C'nin EN BÜYÜK ULAŞIM AĞI</p></div>
         <div class="bg-gray-600 rounded-lg flex w-full py-12 justify-center shadow-lg lg:w-[60%] 2xl:w-[95%]">
             <form class="w-full space-x-4" action="" method="GET">
@@ -43,7 +43,7 @@
                         <div class="card-image flex items-center">
                             <img class="w-11 lg:w-24 h-9 lg:h-20 items-center" src="{{ asset($stat->brandLogo) }}" alt="brandLogo">
                         </div>
-                        <div class="card-title flex space-x-2 lg:space-x-8 items-center text-xs lg:text-sm">
+                        <div class="card-title flex space-x-2 lg:space-x-8 items-center text-[12px] lg:text-sm">
                             <div class="text-center">
                                 <p>{{ $stat->direction->city }}</p>
                                 <p>{{ $stat->departureTime }}</p>
@@ -57,17 +57,17 @@
                                 <i class="fa-solid fa-arrow-right !flex !justify-center"></i>
                             </div>
                             <div class="card-text flex items-center">
-                                <div class="text-center max-w-[50px]">
+                                <div class="text-center max-w-[50px] text-[12px]">
                                     <p>{{$stat->destination->city }}</p>
                                     <p>{{ $stat->arrivalTime }}</p>
                                 </div>
                             </div>
                         </div>
-                        <div class="font-semibold self-center">
+                        <div class="font-semibold self-center text-xs">
                             <p class="items-center">{{ $stat->price }} TL</p>
                         </div>
-                        <div class="card-button content-center justify-self-end">
-                            <button wire:click="buyTicket({{ $stat->id }})" class="bg-yellow-500 hover:bg-yellow-600 text-gray-100 py-2 px-4 rounded-lg">
+                        <div class="card-button content-center flex flex-col w-14">
+                            <button wire:click="buyTicket({{ $stat->id }})" class="justify-self-end bg-yellow-500 hover:bg-yellow-600 text-gray-100 py-2 px-4 rounded-lg">
                                 Al
                             </button>
                             <p class="font-bold text-xs" wire:model.live="stations">Koltuk Sayısı: {{$stat->amount}}</p>
@@ -79,13 +79,13 @@
     @endif
 
     @if(session()->has('message'))
-        <div class="text-green-500 text-center mt-4">
+        <div class="text-green-500 text-center mt-4 font-semibold text-base">
             {{ session('message') }}
         </div>
     @endif
 
     @if(session()->has('error'))
-        <div class="text-red-500 text-center mt-4">
+        <div class="text-red-500 text-center mt-4 font-semibold text-base">
             {{ session('error') }}
         </div>
     @endif

@@ -35,13 +35,16 @@ class Ticket extends Component
                 'arrive')->get();
     }
 
-    public function useTicket($id): void
+    public function useTicket($id)
     {
         $userId = Auth::guard('accounts')->id();
         Tank::query()->where('id', $id)->where('user_id', $userId)->delete();
 
         $this->getTickets();
 
+        session()->flash('redirect_code', true);
+
+        return redirect('/code');
     }
     public function render()
     {
