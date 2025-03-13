@@ -9,7 +9,10 @@
         </svg>
         </div>
         <div class="">
-            <a class="flex justify-center w-full bg-yellow-400 p-2 px-4 rounded-lg text-white font-bold" href="{{route('tickets')}}"> Geri Dön </a>
+            <a class="flex justify-center w-full bg-yellow-400 p-2 px-4 rounded-lg text-white font-bold transition-all duration-500 ease-in-out
+             hover:rounded-full hover:scale-105" href="{{ route('tickets') }}">
+                Geri Dön
+            </a>
         </div>
     </div>
 </x-layout>

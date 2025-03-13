@@ -23,4 +23,7 @@ class Controller extends BaseController{
     public function code(){
         return view('code');
     }
+    public function contact(){
+        return view('contact');
+    }
 }

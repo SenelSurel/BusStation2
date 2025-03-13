@@ -19,6 +19,7 @@ class Location extends Component
     public $from = null;
     public $to = null;
     public $resultsVisible = false;
+    public  $isLoading = false;
 
 
 
@@ -30,6 +31,12 @@ class Location extends Component
     {
         $this->locations = Districts::all();
     }
+    #[On('findLocation')]
+    public function placeholder()
+    {
+        return view('components.loading-placeholder');
+    }
+
     #[On('buyTicket')]
     public function updateSeats(): void
     {
@@ -82,11 +89,15 @@ class Location extends Component
     }
     public function findLocation(): void
     {
+        $this->isLoading = true;
 
         if (!$this->from || !$this->to) {
             session()->flash('error', 'Lütfen kalkış ve varış noktalarını seçin.');
+            $this->isLoading = false;
             return;
         }
+
+        $this->dispatch('findLocation');
 
         $query = Station::query();
 
@@ -97,15 +108,22 @@ class Location extends Component
             $query->where('schedule', $this->schedule);
         }
 
+
         $this->stations = $query->get();
+
+        if ($this->from === $this->to) {
+            session()->flash('error', "Lütfen kalkış ve varış noktalarınızı doğru belirleyiniz");
+            return;
+        }
 
         if ($this->stations->isEmpty()) {
             session()->flash('error', 'Seçtiğiniz rotaya uygun bilet bulunamadı.');
             $this->stations = [];
-            return;
+        }else{
+            $this->resultsVisible = true;
         }
 
-        $this->resultsVisible = true;
+        $this->isLoading = false;
     }
 
 

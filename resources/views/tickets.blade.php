@@ -1,4 +1,5 @@
 <x-layout>
+
     @if(session('redirect_code'))
         <script>
             window.location.href = "{{ route('code') }}";
@@ -9,6 +10,5 @@
     </div>
 
     <livewire:ticket/>
-
 
 </x-layout>
