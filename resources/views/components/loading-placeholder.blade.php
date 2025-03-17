@@ -1,4 +1,4 @@
-<div wire:loading class="flex justify-center items-center min-h-[100px] w-full">
-    <p>YÜKLENİYOR...</p>
-    <img src="{{ asset('frontend/images/output-onlinegiftools.gif') }}" alt="Yükleniyor..." class="w-32 h-26 items-center">
+<div wire:loading.delay wire:target="findLocation"
+     class="flex justify-center min-h-screen w-full text-center md:w-screen items-center self-center">
+    <img src="{{ asset('frontend/images/finalLoader.gif') }}" alt="Yükleniyor..." class="ml-26 w-32 h-32 md:w-52 md:h-52 items-center md:ml-[30rem]">
 </div>

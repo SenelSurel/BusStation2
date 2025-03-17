@@ -9,8 +9,12 @@ class LoginAccount extends Component
 {
     public $email;
     public $password;
-
-
+    public function mount(): void
+    {
+        if (Auth::guard('accounts')->check()) {
+            $this->dispatch('redirect', url:route('index'));
+        }
+    }
     public function login()
     {
         $validated = $this->validate([
@@ -20,17 +24,13 @@ class LoginAccount extends Component
 
         if (!Auth::guard('accounts')->attempt($validated)) {
             $this->addError('email', "Giriş başarısız. Lütfen bilgilerinizi kontrol edin.");
-            return;
-        }
 
-        session()->regenerate();
-        return $this->redirect('/index');
+        }
+        //session()->regenerate();
+        return redirect()->to(route('index'));
     }
     public function render()
     {
-        if (Auth::guard('accounts')->check()) {
-            return redirect()->to('/index');
-        }
         return view('livewire.auth.login-account');
     }
 }

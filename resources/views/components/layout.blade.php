@@ -8,11 +8,17 @@
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
     <script src="https://kit.fontawesome.com/8769eb1509.js" crossorigin="anonymous"></script>
     @livewireStyles
 </head>
-<body class="font-sans antialiased dark:bg-black dark:text-white/50 flex flex-col min-h-screen">
-
+<style>
+    .body-bg {
+        background: url({{asset('/frontend/images/backgroundImage.jpeg')}});
+        background-size: cover;
+    }
+</style>
+<body class="font-sans antialiased dark:text-white/50 flex flex-col min-h-screen !z-40 body-bg">
 <nav class="bg-gray-800">
     <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
         <div class="relative flex h-16 items-center justify-between">
@@ -75,6 +81,10 @@
             mobileMenu.classList.toggle("hidden");
         });
     });
+</script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+<script>
+    AOS.init();
 </script>
 @if(session('redirect_code'))
     <script>

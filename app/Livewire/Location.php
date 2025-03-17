@@ -24,7 +24,7 @@ class Location extends Component
 
 
     protected $listeners = [
-      'bought' => '$refresh',
+        'bought' => '$refresh',
     ];
 
     public function mount(): void
@@ -45,14 +45,6 @@ class Location extends Component
     }
     public function buyTicket($id): void
     {
-
-        $pass = Station::find($id);
-
-       if (!$pass) {
-            session()->flash('error', 'Bilet bulunamadı.');
-            return;
-        }
-
         $station = Station::find($id);
         if($station -> amount>0) {
             $station-> amount -=1;
@@ -65,16 +57,15 @@ class Location extends Component
 
         $userId= Auth::guard('accounts')->id();
 
-
         Tank::create([
             'user_id' => $userId,
-            'ticketImage' => $pass->brandLogo,
-            'midWeek' => $pass->schedule === 'haftaIci' ? 1 : 0,
-            'weekEnd' => $pass->schedule === 'haftaSonu' ? 1 : 0,
-            'fromWhere' => $pass->direction->city,
-            'toWhere' =>  $pass->destination->city,
-            'depart' => $pass->departureTime,
-            'arrive' => $pass->arrivalTime ?? null,
+            'ticketImage' => $station->brandLogo,
+            'midWeek' => $station->schedule === 'haftaIci' ? 1 : 0,
+            'weekEnd' => $station->schedule === 'haftaSonu' ? 1 : 0,
+            'fromWhere' => $station->direction->city,
+            'toWhere' =>  $station->destination->city,
+            'depart' => $station->departureTime,
+            'arrive' => $station->arrivalTime ?? null,
 
         ]);
 
@@ -107,7 +98,6 @@ class Location extends Component
         if ($this->schedule) {
             $query->where('schedule', $this->schedule);
         }
-
 
         $this->stations = $query->get();
 

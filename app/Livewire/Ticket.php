@@ -2,23 +2,18 @@
 
 namespace App\Livewire;
 
-
 use App\Models\Tank;
 use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 
 class Ticket extends Component
 {
-
     public $myTickets = [];
-
-
     public function mount(): void
     {
        $this->getTickets();
 
     }
-
     public function getTickets():void {
         $userId = Auth::guard('accounts')->id();
 
@@ -34,7 +29,6 @@ class Ticket extends Component
                 'depart',
                 'arrive')->get();
     }
-
     public function useTicket($id)
     {
         $userId = Auth::guard('accounts')->id();

@@ -25,7 +25,6 @@ class Results extends Component
         )->get();
         $this->loadTickets();
     }
-
     public function loadTickets(): void
     {
         $this->tickets = Tank::where('user_id', auth()->id())->get();

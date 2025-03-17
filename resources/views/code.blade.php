@@ -1,5 +1,5 @@
 <x-layout>
-    <div class="flex justify-center flex-col items-center mt-8">
+    <div wire:transition class="flex justify-center flex-col items-center mt-8">
         <div class="text-lg font-semibold flex justify-center mb-2">
             <p>Lütfen QR kodunuzu okutunuz.</p>
         </div>
