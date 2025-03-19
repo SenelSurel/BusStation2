@@ -15,7 +15,9 @@
 <style>
     .body-bg {
         background: url({{asset('/frontend/images/backgroundImage.jpeg')}});
-        background-size: cover;
+        background-size: cover !important;
+        background-attachment: fixed;
+        background-position: center;
     }
 </style>
 <body class="font-sans antialiased dark:text-white/50 flex flex-col min-h-screen !z-40 body-bg">
@@ -49,7 +51,24 @@
                     </div>
                 </div>
             </div>
-            @livewire('auth.logout')
+            <div class="relative inline-block text-left">
+                <div>
+                    <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md text-white px-3 py-2 text-sm font-semibold ring-1 shadow-xs hover:bg-gray-500/20  ring-gray-300 ring-inset" id="menu-button" aria-expanded="false" aria-haspopup="true">
+                        Hesap
+                        <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
+                            <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
+                        </svg>
+                    </button>
+                </div>
+
+                <div class="absolute right-0 z-10 mt-2 w-56 origin-top-right rounded-md bg-white ring-1 shadow-lg ring-black/5 focus:outline-hidden transform opacity-0 scale-95 transition-all duration-200 ease-in-out" role="menu" aria-orientation="vertical" aria-labelledby="menu-button" tabindex="-1" id="dropdown-menu">
+                    <div class="py-1" role="none">
+                        <form method="POST" action="#" role="none">
+                            @livewire('auth.logout')
+                        </form>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
     <div class="sm:hidden hidden" id="mobile-menu">
@@ -80,6 +99,24 @@
             this.setAttribute("aria-expanded", !expanded);
             mobileMenu.classList.toggle("hidden");
         });
+    });
+</script>
+<script>
+    const button = document.getElementById('menu-button');
+    const dropdown = document.getElementById('dropdown-menu');
+
+    button.addEventListener('click', () => {
+        const isOpen = dropdown.classList.contains('opacity-100');
+
+        if (isOpen) {
+            dropdown.classList.remove('opacity-100', 'scale-100');
+            dropdown.classList.add('opacity-0', 'scale-95');
+            button.setAttribute('aria-expanded', 'false');
+        } else {
+            dropdown.classList.remove('opacity-0', 'scale-95');
+            dropdown.classList.add('opacity-100', 'scale-100');
+            button.setAttribute('aria-expanded', 'true');
+        }
     });
 </script>
 <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>

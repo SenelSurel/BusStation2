@@ -24,17 +24,14 @@ class Results extends Component
             'price'
         )->get();
         $this->loadTickets();
+
     }
     public function loadTickets(): void
     {
         $this->tickets = Tank::where('user_id', auth()->id())->get();
     }
-
-
     public function render()
     {
-        return view('livewire.results', [
-            'stations' => $this->stations
-        ]);
+        return view('livewire.results');
     }
 }

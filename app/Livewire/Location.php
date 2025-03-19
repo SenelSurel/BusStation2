@@ -21,8 +21,6 @@ class Location extends Component
     public $resultsVisible = false;
     public  $isLoading = false;
 
-
-
     protected $listeners = [
         'bought' => '$refresh',
     ];
@@ -66,7 +64,6 @@ class Location extends Component
             'toWhere' =>  $station->destination->city,
             'depart' => $station->departureTime,
             'arrive' => $station->arrivalTime ?? null,
-
         ]);
 
         session()->flash('message', 'Bilet satın alındı!');
@@ -76,7 +73,6 @@ class Location extends Component
     public function updatedSchedule($value): void
     {
         $this->schedule = $value;
-        $this->findLocation();
     }
     public function findLocation(): void
     {
@@ -88,18 +84,16 @@ class Location extends Component
             return;
         }
 
-        $this->dispatch('findLocation');
+          $this->dispatch('findLocation');
 
         $query = Station::query();
 
-        $query->where('direction_id', $this->from)
-            ->where('destination_id', $this->to);
+        $query->where('direction_id', $this->from)->where('destination_id', $this->to);
 
         if ($this->schedule) {
             $query->where('schedule', $this->schedule);
         }
-
-        $this->stations = $query->get();
+            $this->stations = $query->get();
 
         if ($this->from === $this->to) {
             session()->flash('error', "Lütfen kalkış ve varış noktalarınızı doğru belirleyiniz");
@@ -115,14 +109,8 @@ class Location extends Component
 
         $this->isLoading = false;
     }
-
-
     public function render()
     {
-        return view('livewire.location', [
-            'locations' => $this->locations,
-            'stations' => $this->stations,
-            'schedule' => $this->schedule,
-        ]);
+        return view('livewire.location');
     }
 }
