@@ -1,7 +1,7 @@
 <div>
     <header class="grid grid-cols-1 items-center text-center gap-2 py-8 lg:flex lg:flex-col !z-50 mt-12 ">
         <div><p class="text-xl font-bold mb-4 text-white">K.K.T.C'nin EN BÜYÜK ULAŞIM AĞI</p></div>
-        <div class="backdrop-blur-[4px] bg-gray-500/20 rounded-xl flex w-full py-12 justify-center shadow-lg lg:w-[50%] 2xl:w-[45%]">
+        <div class="backdrop-blur-[4px] bg-gray-500/20 rounded-xl flex w-full py-12 justify-center shadow-lg shadow-black/60 lg:w-[50%] 2xl:w-[45%]">
             <form class="w-full space-x-4" action="" method="GET">
                 @csrf
                 <select id="from" wire:model.live="from" required
@@ -39,7 +39,7 @@
     </header>
 
     <div class="w-full flex justify-center">
-    <div wire:loading.delay wire:target="findLocation" class="flex justify-center items-center min-h-screen w-2/4 md:w-1/6">
+    <div wire:loading.delay wire:target="findLocation" class="flex justify-center shadow-black/60 items-center min-h-screen w-2/4 md:w-1/6">
         <button wire:transition type="button" class="backdrop-blur-[4px] bg-gray-500/20 flex justify-center items-center rounded-xl p-2 px-4" disabled>
             <svg class="mr-3 size-10 animate-spin" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path opacity="0.2" fill-rule="evenodd" clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#000000"/>
@@ -67,7 +67,7 @@
     @endif
 
     @if($resultsVisible)
-        <div class="@container w-full mt-4 lg:flex lg:justify-center lg:flex-col">
+        <div class="@container shadow-black/60 w-full mt-4 lg:flex lg:justify-center lg:flex-col">
             <div class="lg:max-w-[650px] lg:flex lg:justify-center mb-2">
                 <p class="underline underline-offset-4 font-semibold text-lg lg:text-xl text-white">Sonuçlar</p>
             </div>

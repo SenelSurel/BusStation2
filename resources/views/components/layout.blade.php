@@ -52,7 +52,10 @@
                 </div>
             </div>
             <div class="relative inline-block text-left">
-                <div>
+                <div class="flex space-x-5">
+                    <div class="flex justify-center items-center rounded-lg border-1 border-white p-2 px-4">
+                        <a href="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/try.json"><i class="fa-solid fa-turkish-lira-sign text-white hover:text-gray-300 text-lg"></i></a>
+                    </div>
                     <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md text-white px-3 py-2 text-sm font-semibold ring-1 shadow-xs hover:bg-gray-500/20  ring-gray-300 ring-inset" id="menu-button" aria-expanded="false" aria-haspopup="true">
                         Hesap
                         <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">

@@ -1,12 +1,13 @@
-<div class="my-8">
+<div class="my-8" data-aos="fade-up"
+     data-aos-duration="1000">
     <div class="text-white font-bold mb-4">
     <p class="text-2xl">Popüler Seferler</p>
     </div>
-    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-4 bg-gray-400/20 backdrop-blur-sm p-2 rounded-xl">
+    <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-4 bg-gray-400/20 backdrop-blur-sm rounded-xl">
         @foreach($stations as $pass)
             <div class="border border-gray-300 bg-white rounded-lg py-2 px-4 flex items-center justify-between shadow-md space-x-4 w-full max-w-3xl mx-auto">
                 <div class="flex-shrink-0">
-                    <img class="w-12 lg:w-16 lg:h-16" src="{{ asset($pass->brandLogo) }}" alt="brandLogo">
+                    <img class="w-12 lg:w-16" src="{{ asset($pass->brandLogo) }}" alt="brandLogo">
                 </div>
                 <div class="text-center text-[10px] md:text-[13px]">
                     <p class="text-red-400 font-semibold">{{ optional($pass->direction)->city ?? '-' }}</p>
