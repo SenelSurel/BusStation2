@@ -6,9 +6,9 @@
         @csrf
         <input class="bg-white rounded-lg p-[0.3rem] w-3/4" type="email" wire:model.defer="email" placeholder="E-posta">
         <input class="bg-white rounded-lg p-[0.3rem] w-3/4" type="password" wire:model.defer="password" placeholder="Şifre">
-        <button class="bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded-full text-gray-100" type="submit">Giriş Yap</button>
+        <button class="bg-blue-500 hover:bg-blue-400 py-2 px-4 rounded-full text-gray-100" type="submit">Giriş Yap</button>
         <div class="">
-            <p class="text-white">Hesabın yok mu? <a class="text-blue-500 hover:text-blue-300" href="{{route('register-page')}}">Kayıt Ol</a></p>
+            <p class="text-white">Hesabın yok mu? <a class="text-blue-500 hover:text-blue-100" href="{{route('register-page')}}">Kayıt Ol</a></p>
         </div>
     </form>
 </div>

@@ -8,7 +8,7 @@
         <input class="bg-white rounded-lg p-[0.3rem] w-3/4" type="email" wire:model.defer="email" placeholder="E-posta">
         <input class="bg-white rounded-lg p-[0.3rem] w-3/4" type="password" wire:model.defer="password" placeholder="Şifre">
         <input class="bg-white rounded-lg p-[0.3rem] w-3/4" type="password" wire:model.defer="password_confirmation" placeholder="Şifre Tekrar">
-        <button class="bg-yellow-500 hover:bg-yellow-600 py-2 px-4 rounded-full text-gray-100" type="submit">Kayıt Ol</button>
+        <button class="bg-blue-500 hover:bg-blue-300 py-2 px-4 rounded-full text-gray-100" type="submit">Kayıt Ol</button>
         <div class="">
             <p class="text-white">Zaten bir hesabın var mı? <a class="text-blue-500 hover:text-blue-300" href="{{route('login')}}">Giriş Yap</a></p>
         </div>
