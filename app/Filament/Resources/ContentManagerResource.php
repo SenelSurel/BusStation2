@@ -17,8 +17,8 @@ class ContentManagerResource extends Resource
 {
     protected static ?string $model = Content::class;
 
-    protected static ?string $navigationIcon = 'heroicon-o-paper-clip';
-    protected static ?string $modelLabel = 'İçerikler';
+    protected static ?string $navigationIcon = 'heroicon-s-flag';
+    protected static ?string $modelLabel = 'Sponsor';
 
     public static function form(Form $form): Form
     {
@@ -54,6 +54,7 @@ class ContentManagerResource extends Resource
                 TextColumn::make('contentTitle')
                 ->label('Başlık'),
                 TextColumn::make('contentText')
+                    ->words(10)
                     ->formatStateUsing(fn ($state) => strip_tags($state))
                 ->label('Açıklama'),
             ])

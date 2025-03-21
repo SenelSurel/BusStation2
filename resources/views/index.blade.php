@@ -1,5 +1,5 @@
 <x-layout>
-    <div class=" text-black/50 dark:bg-black dark:text-white/50 shadow-black/60" >
+    <div id="up" class=" text-black/50 dark:bg-black dark:text-white/50" >
         <div class="relative min-h-screen flex flex-col items-center justify-center selection:bg-[#FF2D20] selection:text-white">
             <div class="relative w-full max-w-2xl px-6 lg:max-w-7xl">
                 <livewire:location/>
@@ -21,6 +21,10 @@
                 </div>
                 <livewire:services/>
                 <livewire:popular/>
+
+                <div class="fixed right-12 bottom-12">
+                    <a class="bg-gray-600/40 backdrop-blur-sm p-4 rounded-full text-base text-white align-middle flex justify-center" href="#up"><i class="fa-solid fa-arrow-up"></i></a>
+                </div>
             </div>
         </div>
     </div>

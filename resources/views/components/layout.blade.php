@@ -27,8 +27,7 @@
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
                 <!-- Mobile menu button-->
                 <button type="button" class="relative inline-flex items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:ring-2 focus:ring-white focus:outline-hidden focus:ring-inset" aria-controls="mobile-menu" aria-expanded="false">
-                    <span class="absolute -inset-0.5"></span>
-                    <span class="sr-only">Open main menu</span>
+
 
                     <svg class="block size-6" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" aria-hidden="true" data-slot="icon">
                         <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
@@ -40,7 +39,7 @@
                 </button>
             </div>
             <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
-                <div class="flex shrink-0 items-center text-white">
+                <div class="flex shrink-0 items-center text-white text-sm md:text-lg ml-8 md:ml-0">
                     <i class=" fa fa-bus"> Bus Station</i>
                 </div>
                 <div class="hidden sm:ml-6 sm:block">
@@ -53,9 +52,13 @@
             </div>
             <div class="relative inline-block text-left">
                 <div class="flex space-x-5">
-                    <div class="flex justify-center items-center rounded-lg border-1 border-white p-2 px-4">
-                        <a href="https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/try.json"><i class="fa-solid fa-turkish-lira-sign text-white hover:text-gray-300 text-lg"></i></a>
-                    </div>
+                        <select id="currency" wire:change="$emit('currencyChanged', $event.target.value)" class="flex justify-center
+                        align-middle border-1 border-white p-2 rounded-lg text-white">
+                            <option value="try" class="text-black text-xs md:text-base">TRY</option>
+                            <option value="usd" class="text-black text-xs md:text-base">USD</option>
+                            <option value="eur" class="text-black text-xs md:text-base">EUR</option>
+                            <option value="gbp" class="text-black text-xs md:text-base">GBP</option>
+                        </select>
                     <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md text-white px-3 py-2 text-sm font-semibold ring-1 shadow-xs hover:bg-gray-500/20  ring-gray-300 ring-inset" id="menu-button" aria-expanded="false" aria-haspopup="true">
                         Hesap
                         <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
@@ -104,6 +107,81 @@
         });
     });
 </script>
+{{--CURRENCY--}}
+<script>
+    let exchangeRates = {};
+    const apiEndpoint = 'https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/try.json';
+
+    document.addEventListener("DOMContentLoaded", function () {
+        fetch(apiEndpoint)
+            .then(response => {
+                if (!response.ok) throw new Error('API yanıtı başarısız');
+                return response.json();
+            })
+            .then(data => {
+                exchangeRates = data.try;
+                console.log("Döviz Kurları:", exchangeRates);
+                convertPrice('try');
+            })
+            .catch(error => console.error("Döviz kurları alınamadı:", error));
+    });
+
+    function convertPrice(currency) {
+
+        const priceElements = document.querySelectorAll('[id^="ticket-price-"]');
+
+        if (!priceElements.length) {
+            console.error("Fiyat elementleri bulunamadı!");
+            return;
+        }
+
+        priceElements.forEach(element => {
+            const basePrice = parseFloat(element.dataset.price);
+            if (isNaN(basePrice)) {
+                console.error("Bilet fiyatı geçersiz:", element.id);
+                return;
+            }
+
+            let convertedPrice = basePrice;
+            let currencySymbol = "₺";
+
+            if (exchangeRates && Object.keys(exchangeRates).length > 0) {
+                switch(currency) {
+                    case "try":
+                        convertedPrice = basePrice;
+                        currencySymbol = "₺";
+                        break;
+                    case "usd":
+                        convertedPrice = basePrice * exchangeRates.usd;
+                        currencySymbol = "$";
+                        break;
+                    case "eur":
+                        convertedPrice = basePrice * exchangeRates.eur;
+                        currencySymbol = "€";
+                        break;
+                    case "gbp":
+                        convertedPrice = basePrice * exchangeRates.gbp;
+                        currencySymbol = "£";
+                        break;
+                    default:
+                        convertedPrice = basePrice;
+                        currencySymbol = "₺";
+                }
+            }
+
+            element.textContent = convertedPrice.toFixed(2);
+            document.getElementById(`currency-symbol-${element.id.split('-')[2]}`).textContent = currencySymbol;
+        });
+    }
+
+    document.getElementById('currency').addEventListener('change', (event) => {
+        convertPrice(event.target.value);
+    });
+</script>
+
+
+
+
 <script>
     const button = document.getElementById('menu-button');
     const dropdown = document.getElementById('dropdown-menu');

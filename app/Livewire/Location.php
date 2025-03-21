@@ -5,8 +5,8 @@ namespace App\Livewire;
 use App\Models\Districts;
 use App\Models\Station;
 use App\Models\Tank;
-use Filament\Forms\Components\Livewire;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -18,16 +18,63 @@ class Location extends Component
     public $stations = [];
     public $from = null;
     public $to = null;
+    public $currency = 'try';
+    public $currencySymbol = '₺';
+    protected $exchangeRates = [];
     public $resultsVisible = false;
     public  $isLoading = false;
 
     protected $listeners = [
         'bought' => '$refresh',
+        'currencyChanged' => 'updateCurrency'
     ];
+
 
     public function mount(): void
     {
         $this->locations = Districts::all();
+        $this->fetchExchangeRates();
+    }
+    public function fetchExchangeRates(): void
+    {
+        $response = Http::get('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/try.json');
+        if ($response->successful()) {
+            $this->exchangeRates = $response->json()['try'];
+        }
+    }
+
+    public function updateCurrency($currency): void
+    {
+        $this->currency = $currency;
+    }
+
+    public function getConvertedPrice($price): string
+    {
+        $basePrice = floatval($price);
+
+        switch ($this->currency) {
+            case 'try':
+                $convertedPrice = $basePrice;
+                $this->currencySymbol = '₺';
+                break;
+            case 'usd':
+                $convertedPrice = $basePrice * ($this->exchangeRates['usd'] ?? 1);
+                $this->currencySymbol = '$';
+                break;
+            case 'eur':
+                $convertedPrice = $basePrice * ($this->exchangeRates['eur'] ?? 1);
+                $this->currencySymbol = '€';
+                break;
+            case 'gbp':
+                $convertedPrice = $basePrice * ($this->exchangeRates['gbp'] ?? 1);
+                $this->currencySymbol = '£';
+                break;
+            default:
+                $convertedPrice = $basePrice;
+                $this->currencySymbol = '₺';
+        }
+
+        return number_format($convertedPrice, 2, '.', '');
     }
     #[On('findLocation')]
     public function placeholder()

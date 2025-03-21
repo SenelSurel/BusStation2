@@ -18,6 +18,7 @@ class DistrictManagerResource extends Resource
     protected static ?string $model = Districts::class;
 
     protected static ?string $navigationIcon = 'iconsax-bul-row-vertical';
+    protected static ?string $modelLabel = 'Şehir';
 
     public static function form(Form $form): Form
     {
