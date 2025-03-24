@@ -69,12 +69,12 @@
     @if($resultsVisible)
         <div class="@container backdrop-blur-[4px] bg-gray-500/20 rounded-xl w-full py-4 mt-4 lg:flex lg:justify-center lg:flex-col">
             <div class="lg:max-w-[650px] lg:flex lg:justify-center mb-2 w-full justify-center">
-                <p class="font-bold text-2xl text-white text-center">Sonuçlar</p>
+                <p class="font-bold text-2xl text-white text-start">Sonuçlar</p>
             </div>
             @foreach($stations as $pass)
-                <div class="card border-gray-400 bg-white border-solid border rounded-lg py-4 flex justify-evenly lg:justify-around lg:min-w-[750px] lg:self-center text-sm mb-4 shadow-md space-x-2">
+                <div class="card border-gray-400 bg-white border-solid border rounded-lg py-4 flex justify-evenly lg:justify-around lg:min-w-[850px] lg:self-center text-sm mb-4 shadow-md space-x-2">
                     <div class="card-image flex items-center">
-                        <img class="w-14 lg:w-24 h-12 lg:h-24 items-center" src="{{ asset($pass->brandLogo) }}"
+                        <img class="w-14 lg:w-24 h-12 lg:h-20 items-center" src="{{ asset($pass->brandLogo) }}"
                              alt="brandLogo">
                     </div>
                     <div class="card-title flex space-x-2 lg:space-x-8 items-center text-xs md:text-[15px]">
@@ -84,7 +84,7 @@
                         </div>
 
                         <div class="flex flex-col w-full !justify-center border-gray-400">
-                            <div class="flex justify-center font-semibold text-xs md:text-[15px]">
+                            <div class="flex justify-center font-semibold text-xs md:text-[15px] ">
                                 @if($pass->schedule == 'haftaIci')
                                     Hafta içi
                                 @elseif($pass->schedule == 'haftaSonu')

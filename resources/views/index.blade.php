@@ -6,22 +6,18 @@
                 <main class="mt-6">
                     <livewire:results/>
                 </main>
-                <div class="rounded-3xl !z-50 backdrop-blur-[4px] md:py-4 mb-12 shadow-black/60 bg-gray-500/20 p-4" data-aos="fade-up"
+                <div class="rounded-3xl !z-50 backdrop-blur-[4px] md:py-4 mb-12 shadow-lg shadow-black/60 bg-gray-500/20 p-4" data-aos="fade-up"
                      data-aos-duration="1000">
                     <div class="flex md:justify-start justify-center md:ml-20">
                         <p class="text-2xl text-white mb-4 font-bold">En Büyük Sponsorlarımız</p>
                     </div>
                     <livewire:contents/>
                 </div>
-                <div class="flex w-full justify-center shadow-black/60 md:justify-start md:ml-8 mb-4" data-aos="fade-zoom-in"
-                     data-aos-easing="ease-in-back"
-                     data-aos-delay="200"
-                     data-aos-offset="0">
-                    <p class="text-2xl text-white font-bold">Hizmetlerimiz</p>
-                </div>
+
                 <livewire:services/>
                 <livewire:popular/>
 
+                <livewire:f-a-q/>
                 <div class="fixed right-12 bottom-12">
                     <a class="bg-gray-600/40 backdrop-blur-sm p-4 rounded-full text-base text-white align-middle flex justify-center" href="#up"><i class="fa-solid fa-arrow-up"></i></a>
                 </div>

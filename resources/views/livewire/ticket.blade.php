@@ -1,4 +1,4 @@
-<div wire:poll.5s class="grid grid-cols-2 md:inline-grid md:grid-cols-6 md:grid-rows-subgrid md:gap-2  md:ml-36 mb-8 space-y-2 md:space-x-6 justify-items-center">
+<div wire:poll.5s class="grid grid-cols-2 md:inline-grid md:grid-cols-4 xl:grid-cols-6 md:grid-rows-subgrid md:gap-2 md:ml-8 xl:ml-36 mb-8 space-y-2 md:space-x-6 justify-items-center">
     @forelse($myTickets as $pass)
         <div class="card bg-gray-500/25 backdrop-blur-sm w-[10rem] h-[15rem] flex flex-col border-gray-600 border-2 justify-center items-center rounded-lg shadow-lg">
             <div class=" bg-gray-500/25 backdrop-blur-sm  w-[9rem] h-[14.3rem] p-2 rounded-lg card-body">

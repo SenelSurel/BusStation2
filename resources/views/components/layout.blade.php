@@ -53,13 +53,13 @@
             <div class="relative inline-block text-left">
                 <div class="flex space-x-5">
                         <select id="currency" wire:change="$emit('currencyChanged', $event.target.value)" class="flex justify-center
-                        align-middle border-1 border-white p-2 rounded-lg text-white">
+                        align-middle border-1 border-white px-2 rounded-lg text-white">
                             <option value="try" class="text-black text-xs md:text-base">TRY</option>
                             <option value="usd" class="text-black text-xs md:text-base">USD</option>
                             <option value="eur" class="text-black text-xs md:text-base">EUR</option>
                             <option value="gbp" class="text-black text-xs md:text-base">GBP</option>
                         </select>
-                    <button type="button" class="inline-flex w-full justify-center gap-x-1.5 rounded-md text-white px-3 py-2 text-sm font-semibold ring-1 shadow-xs hover:bg-gray-500/20  ring-gray-300 ring-inset" id="menu-button" aria-expanded="false" aria-haspopup="true">
+                    <button type="button" class=" self-center inline-flex w-full justify-center gap-x-1.5 rounded-md text-white px-3 py-2 text-sm font-semibold ring-1 shadow-xs hover:bg-gray-500/20  ring-gray-300 ring-inset align-baseline" id="menu-button" aria-expanded="false" aria-haspopup="true">
                         Hesap
                         <svg class="-mr-1 size-5 text-gray-400" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
                             <path fill-rule="evenodd" d="M5.22 8.22a.75.75 0 0 1 1.06 0L10 11.94l3.72-3.72a.75.75 0 1 1 1.06 1.06l-4.25 4.25a.75.75 0 0 1-1.06 0L5.22 9.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
@@ -91,7 +91,12 @@
 
 <footer class="py-16 text-center text-sm text-white dark:text-white/70 bg-gray-800 w-full">
 
-    <p>Bus Station ©2025 | All rights are reserved.</p>
+    <p class="font-bold text-base">Bus Station ©2025 | All rights are reserved.</p>
+    <ul class="flex justify-center space-x-5 items-center my-8">
+        <li><img src="{{asset('frontend/images/mastercard.png')}}" alt="image" class="w-14"></li>
+        <li><img src="{{asset('frontend/images/visa.png')}}" alt="image" class="w-14"></li>
+        <li><img src="{{asset('frontend/images/troy.png')}}" alt="image" class="w-14"></li>
+    </ul>
 </footer>
 
 <script>
