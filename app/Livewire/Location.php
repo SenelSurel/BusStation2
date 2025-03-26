@@ -131,7 +131,7 @@ class Location extends Component
             return;
         }
 
-          $this->dispatch('findLocation');
+        $this->dispatch('findLocation');
 
         $query = Station::query();
 
@@ -140,7 +140,7 @@ class Location extends Component
         if ($this->schedule) {
             $query->where('schedule', $this->schedule);
         }
-            $this->stations = $query->get();
+        $this->stations = $query->get();
 
         if ($this->from === $this->to) {
             session()->flash('error', "Lütfen kalkış ve varış noktalarınızı doğru belirleyiniz");

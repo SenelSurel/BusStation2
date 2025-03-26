@@ -28,10 +28,10 @@
                         <label for="haftaSonu" class="text-white">Hafta sonu</label>
                     </div>
                     <div class="">
-                    <button wire:click.prevent="findLocation" wire:loading.attr="disabled"
-                            class="bg-blue-500 py-2 px-8 rounded-lg text-white font-bold transition-all duration-500 ease-in-out hover:rounded-full hover:scale-105">
-                        Ara
-                    </button>
+                        <button wire:click.prevent="findLocation" wire:loading.attr="disabled"
+                                class="bg-blue-500 py-2 px-8 rounded-lg text-white font-bold transition-all duration-500 ease-in-out hover:rounded-full hover:scale-105">
+                            Ara
+                        </button>
                     </div>
                 </div>
             </form>
@@ -39,30 +39,30 @@
     </header>
 
     <div class="w-full flex justify-center">
-    <div wire:loading.delay wire:target="findLocation" class="flex justify-center shadow-black/60 items-center min-h-screen w-2/4 md:w-[14%]">
-        <button wire:transition type="button" class="backdrop-blur-[4px] bg-gray-500/20 flex justify-center items-center rounded-xl p-2 px-2" disabled>
-            <svg class="mr-3 size-10 animate-spin" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path opacity="0.2" fill-rule="evenodd" clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#000000"/>
-                <path d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z" fill="#80dfff"/>
-            </svg>
-            <p class="text-white font-semibold text-lg align-middle">Yükleniyor...</p>
-        </button>
-    </div>
+        <div wire:loading.delay wire:target="findLocation" class="flex justify-center shadow-black/60 items-center min-h-screen w-2/4 md:w-[14%]">
+            <button wire:transition type="button" class="backdrop-blur-[4px] bg-gray-500/20 flex justify-center items-center rounded-xl p-2 px-2" disabled>
+                <svg class="mr-3 size-10 animate-spin" width="800px" height="800px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path opacity="0.2" fill-rule="evenodd" clip-rule="evenodd" d="M12 19C15.866 19 19 15.866 19 12C19 8.13401 15.866 5 12 5C8.13401 5 5 8.13401 5 12C5 15.866 8.13401 19 12 19ZM12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z" fill="#000000"/>
+                    <path d="M2 12C2 6.47715 6.47715 2 12 2V5C8.13401 5 5 8.13401 5 12H2Z" fill="#80dfff"/>
+                </svg>
+                <p class="text-white font-semibold text-lg align-middle">Yükleniyor...</p>
+            </button>
+        </div>
     </div>
 
     @if(session()->has('error'))
         <div class="w-full flex justify-center">
-        <div class="text-white text-center mt-4 font-semibold text-base p-2 rounded-lg w-[50%] md:w-[30%] flex justify-center backdrop-blur-[4px] bg-red-500 ">
-            {{ session('error') }}
-        </div>
+            <div class="text-white text-center mt-4 font-semibold text-base p-2 rounded-lg w-[50%] md:w-[30%] flex justify-center backdrop-blur-[4px] bg-red-500 ">
+                {{ session('error') }}
+            </div>
         </div>
     @endif
 
     @if(session()->has('message'))
         <div class="w-full flex justify-center">
-        <div class=" text-white text-center mt-4 font-semibold text-base p-2 rounded-lg w-[50%] md:w-[30%] flex justify-center backdrop-blur-[4px] bg-green-500">
-            {{ session('message') }}
-        </div>
+            <div class=" text-white text-center mt-4 font-semibold text-base p-2 rounded-lg w-[50%] md:w-[30%] flex justify-center backdrop-blur-[4px] bg-green-500">
+                {{ session('message') }}
+            </div>
         </div>
     @endif
 

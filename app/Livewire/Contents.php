@@ -9,7 +9,7 @@ class Contents extends Component
 {
     public $contents;
 
-    public function mount()
+    public function mount(): void
     {
         $this->contents = Content::query()->select('contentImage', 'contentTitle', 'contentText')->get();
     }

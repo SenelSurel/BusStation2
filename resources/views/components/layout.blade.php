@@ -14,10 +14,11 @@
 </head>
 <style>
     .body-bg {
-        background: url({{asset('/frontend/images/backgroundImage.jpeg')}});
+        background: url({{asset('/frontend/images/busBack.jpg')}});
         background-size: cover !important;
         background-attachment: fixed;
         background-position: center;
+        backdrop-filter: blur(3px);
     }
 </style>
 <body class="font-sans antialiased dark:text-white/50 flex flex-col min-h-screen !z-40 body-bg">
