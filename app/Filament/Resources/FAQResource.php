@@ -21,7 +21,7 @@ class FAQResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-m-question-mark-circle';
 
-    protected static ?string $modelLabel = 'Sorular';
+    protected static ?string $modelLabel = "FAQ's";
 
     public static function form(Form $form): Form
     {
@@ -29,13 +29,13 @@ class FAQResource extends Resource
             ->schema([
                 TextInput::make('question')
                 ->required()
-                ->label('Soru'),
+                ->label('Question'),
                 Forms\Components\RichEditor::make('answer')
                     ->columnSpanFull()
                     ->formatStateUsing(fn ($state) => strip_tags($state))
                     ->extraInputAttributes(['sanitize' => true])
                     ->maxLength(500)
-            ->label('Cevap')
+            ->label('Answer')
             ]);
     }
 
@@ -44,11 +44,11 @@ class FAQResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('question')
-                ->label('Soru'),
+                ->label('Question'),
                 TextColumn::make('answer')
                     ->words(10)
                     ->formatStateUsing(fn ($state) => strip_tags($state))
-                ->label('Cevap'),
+                ->label('Answer'),
             ])
             ->filters([
                 //

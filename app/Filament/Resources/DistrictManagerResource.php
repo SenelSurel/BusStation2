@@ -18,14 +18,14 @@ class DistrictManagerResource extends Resource
     protected static ?string $model = Districts::class;
 
     protected static ?string $navigationIcon = 'iconsax-bul-row-vertical';
-    protected static ?string $modelLabel = 'Şehir';
+    protected static ?string $modelLabel = 'City';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('city')
-                ->label('Şehir'),
+                ->label('City'),
             ]);
     }
 
@@ -36,7 +36,7 @@ class DistrictManagerResource extends Resource
                 TextColumn::make('id')
                     ->label('ID'),
                 TextColumn::make('city')
-                    ->label('Şehir'),
+                    ->label('City'),
             ])
             ->filters([
                 //

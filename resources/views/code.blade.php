@@ -1,7 +1,7 @@
 <x-layout>
     <div wire:transition class="flex justify-center flex-col items-center my-8">
         <div class="bg-gray-500/25 backdrop-blur-sm p-2 rounded-lg text-lg font-semibold flex justify-center mb-8 text-white">
-            <p>Lütfen QR kodunuzu okutunuz.</p>
+            <p>Please scan your QR code.</p>
         </div>
         <div class="border-2 border-solid rounded-xl mb-4 bg-gray-300/20 backdrop-blur-[7px]">
         <svg xmlns="http://www.w3.org/2000/svg" width="296" height="296">
@@ -11,7 +11,7 @@
         <div class="">
             <a class="flex justify-center w-full bg-blue-500 p-2 px-4 rounded-lg text-white font-bold transition-all duration-500 ease-in-out
              hover:rounded-full hover:scale-105" href="{{ route('tickets') }}">
-                Geri Dön
+                Go Back
             </a>
         </div>
     </div>

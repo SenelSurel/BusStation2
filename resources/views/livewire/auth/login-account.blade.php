@@ -4,11 +4,11 @@
     </div>
     <form class="min-w-full border-solid border-2 lg:flex lg:flex-col p-4 rounded-lg border-gray-300 min-h-full space-y-8 items-center" wire:submit.prevent="login">
         @csrf
-        <input class="bg-white rounded-lg p-[0.3rem] w-3/4" type="email" wire:model.defer="email" placeholder="E-posta">
-        <input class="bg-white rounded-lg p-[0.3rem] w-3/4" type="password" wire:model.defer="password" placeholder="Şifre">
-        <button class="bg-blue-500 hover:bg-blue-400 py-2 px-4 rounded-full text-gray-100" type="submit">Giriş Yap</button>
+        <input class="bg-white rounded-lg p-[0.3rem] w-3/4" type="email" wire:model.defer="email" placeholder="E-mail">
+        <input class="bg-white rounded-lg p-[0.3rem] w-3/4" type="password" wire:model.defer="password" placeholder="Password">
+        <button class="bg-blue-500 hover:bg-blue-400 py-2 px-4 rounded-full text-gray-100" type="submit">Log In</button>
         <div class="">
-            <p class="text-white">Hesabın yok mu? <a class="text-blue-500 hover:text-blue-100" href="{{route('register-page')}}">Kayıt Ol</a></p>
+            <p class="text-white">Don't have an account? <a class="text-blue-500 hover:text-blue-100" href="{{route('register-page')}}">Register</a></p>
         </div>
     </form>
 </div>

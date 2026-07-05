@@ -1,7 +1,7 @@
 <div class="my-8" data-aos="fade-up"
      data-aos-duration="1000">
     <div class="text-white font-bold mb-4 w-full flex justify-center md:justify-start">
-    <p class="text-2xl">Popüler Seferler</p>
+    <p class="text-2xl">Popular Trips</p>
     </div>
     <div class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-4 p-4 bg-gray-400/20 backdrop-blur-sm rounded-xl shadow-lg shadow-black/60">
         @foreach($stations as $pass)
@@ -16,9 +16,9 @@
                 <div class="flex flex-col items-center text-[9px] md:text-xs">
                     <p class="font-semibold">
                         @if($pass->schedule == 'haftaIci')
-                            Hafta içi
+                            Weekday
                         @elseif($pass->schedule == 'haftaSonu')
-                            Hafta sonu
+                            Weekend
                         @else
                             -
                         @endif

@@ -28,7 +28,7 @@ class UserManagerResource extends Resource
     protected static ?string $model = User::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-user';
-    protected static ?string $modelLabel = 'Kullanıcı';
+    protected static ?string $modelLabel = 'Users';
 
     public static function form(Form $form): Form
     {
@@ -36,7 +36,7 @@ class UserManagerResource extends Resource
             ->schema([
 
                 Forms\Components\TextInput::make('name')
-                    ->label('Kullanıcı Adı')
+                    ->label('Username')
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('email')->email()
@@ -44,12 +44,12 @@ class UserManagerResource extends Resource
                     ->required()
                     ->maxLength(255),
                 Forms\Components\TextInput::make('password')
-                    ->label('Şifre')
+                    ->label('Password')
                     ->password()
                     ->revealable()
                     ->required(),
                 Forms\Components\TextInput::make('password_confirmation')->same('password')
-                    ->label('Şifre Doğrula')
+                    ->label('Confirm Password')
                     ->validationMessages([
                         'same' => 'Eşleşmeyen Şifre!',
                     ])
@@ -68,7 +68,7 @@ class UserManagerResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('name')
-                    ->label('Kullanıcı Adı')
+                    ->label('Username')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('email')
                     ->label('Email')

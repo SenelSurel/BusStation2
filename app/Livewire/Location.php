@@ -7,6 +7,8 @@ use App\Models\Station;
 use App\Models\Tank;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
+use Illuminate\Support\Facades\DB;
+use Throwable;
 use Livewire\Attributes\On;
 use Livewire\Component;
 
@@ -35,13 +37,23 @@ class Location extends Component
         $this->locations = Districts::all();
         $this->fetchExchangeRates();
     }
-    public function fetchExchangeRates(): void
-    {
-        $response = Http::get('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/try.json');
+   public function fetchExchangeRates(): void
+{
+    try {
+
+        $response = Http::timeout(5)
+            ->get('https://cdn.jsdelivr.net/npm/@fawazahmed0/currency-api@latest/v1/currencies/try.json');
+
         if ($response->successful()) {
-            $this->exchangeRates = $response->json()['try'];
+            $this->exchangeRates = $response->json()['try'] ?? [];
         }
+
+    } catch (Throwable $e) {
+
+        $this->exchangeRates = [];
+
     }
+}
 
     public function updateCurrency($currency): void
     {
@@ -96,7 +108,7 @@ class Location extends Component
             $this->dispatch('bought');
             $station -> save();
         }else {
-            session()->flash('error', 'Otobüs Dolu!');
+            session()->flash('error', 'Sorry, Bus is full');
             return;
         }
 
@@ -113,7 +125,7 @@ class Location extends Component
             'arrive' => $station->arrivalTime ?? null,
         ]);
 
-        session()->flash('message', 'Bilet satın alındı!');
+        session()->flash('message', 'Ticket purchased successfully!');
         $this->dispatch('ticketPurchased');
     }
 
@@ -126,7 +138,7 @@ class Location extends Component
         $this->isLoading = true;
 
         if (!$this->from || !$this->to) {
-            session()->flash('error', 'Lütfen kalkış ve varış noktalarını seçin.');
+            session()->flash('error', 'Please choose your departure and arrival location.');
             $this->isLoading = false;
             return;
         }
@@ -143,17 +155,17 @@ class Location extends Component
         $this->stations = $query->get();
 
         if ($this->from === $this->to) {
-            session()->flash('error', "Lütfen kalkış ve varış noktalarınızı doğru belirleyiniz");
+            session()->flash('error', "Please select your departure and destination points correctly.");
             return;
         }
 
         if ($this->stations->isEmpty()) {
-            session()->flash('error', 'Seçtiğiniz rotaya uygun bilet bulunamadı.');
+            session()->flash('error', 'No tickets were found for the selected route.');
             $this->stations = [];
         }else{
             $this->resultsVisible = true;
         }
-
+        sleep(2);
         $this->isLoading = false;
     }
     public function render()

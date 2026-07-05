@@ -35,7 +35,7 @@ class RouteManagerResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-c-map-pin';
 
-    protected static ?string $modelLabel = 'Sefer Rehberi';
+    protected static ?string $modelLabel = 'Trips';
 
     public static function canViewAny(): bool
     {
@@ -67,15 +67,15 @@ class RouteManagerResource extends Resource
             ->schema([
                 Forms\Components\TextInput::make('brand')
                 ->required()
-                ->label('Firma'),
+                ->label('Brand'),
                 Forms\Components\TextInput::make('departureTime')
                 ->required()
                     ->ValidationMessages([
-                        'regex'=> 'Yanlış Format!'
+                        'regex'=> 'Invalid Format!'
                     ])
                     ->rule('regex:/^([01][0-9]|2[0-3]):[0-5][0-9]$/')
                     ->helperText('Format: Saat : Dakika')
-                ->label('Sefer Tarihi'),
+                ->label('Departure Time'),
                 Forms\Components\Select::make('direction_id')
                 ->required()
                     ->options(
@@ -83,7 +83,7 @@ class RouteManagerResource extends Resource
                             ->pluck('districts.city', 'districts.id')
                             ->all())
                     ->native(false)
-                ->label('Nereden')
+                ->label('From')
                 ->placeholder('Lefkoşa'),
                 Forms\Components\Select::make('destination_id')
                     ->required()
@@ -92,33 +92,33 @@ class RouteManagerResource extends Resource
                             ->pluck('districts.city', 'districts.id')
                             ->all())
                     ->native(false)
-                    ->label('Nereye')
+                    ->label('To')
                     ->placeholder('Girne'),
                 Forms\Components\TextInput::make('arrivalTime')
                     ->required()
                     ->ValidationMessages([
-                        'regex'=> 'Yanlış Format!'
+                        'regex'=> 'Invalid Format!'
                     ])
                     ->rule('regex:/^([01][0-9]|2[0-3]):[0-5][0-9]$/')
                     ->helperText('Format: Saat : Dakika')
-                ->label('Varış'),
+                ->label('Arrival Time'),
                 Forms\Components\TextInput::make('amount')
                 ->required()
                 ->default(3)
-                ->label('Koltuk Sayısı'),
+                ->label('Seats'),
                 Forms\Components\TextInput::make('price')
                 ->required()
-                ->label('Fiyat'),
+                ->label('Price'),
                 Forms\Components\Select::make('schedule')
                     ->required()
                     ->native(false)
-                    ->label('Günler')
+                    ->label('Schedule')
                     ->options([
                         'haftaIci' => 'Hafta içi',
                         'haftaSonu' => 'Hafta sonu',
                     ]),
                 Forms\Components\FileUpload::make('brandLogo')
-                    ->label('Firma Logo')
+                    ->label('Brand Logo')
                     ->required()
                     ->helperText('(Max:1 MB) (Çözünürlük : 150x150)')
                     ->image()
@@ -137,15 +137,15 @@ class RouteManagerResource extends Resource
         return $table
             ->columns([
                 Tables\Columns\TextColumn::make('brand')
-                ->label('Firma'),
+                ->label('Company'),
                 Tables\Columns\TextColumn::make('schedule')
-                    ->label('Günler'),
+                    ->label('Schedule'),
                 Tables\Columns\TextColumn::make('direction.city')
-                ->label('Nereden'),
+                ->label('From'),
                 Tables\Columns\TextColumn::make('destination.city')
-                ->label('Nereye'),
+                ->label('To'),
                 Tables\Columns\TextColumn::make('departureTime')
-                ->label('Kalkış'),
+                ->label('Departure Time'),
             ])
             ->filters([
                 //

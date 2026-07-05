@@ -18,16 +18,16 @@ class ContentManagerResource extends Resource
     protected static ?string $model = Content::class;
 
     protected static ?string $navigationIcon = 'heroicon-s-flag';
-    protected static ?string $modelLabel = 'Sponsor';
+    protected static ?string $modelLabel = 'Sponsors';
 
     public static function form(Form $form): Form
     {
         return $form
             ->schema([
                 TextInput::make('contentTitle')
-                ->label('Başlık'),
+                ->label('Title'),
                 Forms\Components\FileUpload::make('contentImage')
-                    ->label('İçerik')
+                    ->label('Content Image')
                     ->required()
                     ->helperText('(Max:1 MB) (Çözünürlük : 150x150)')
                     ->image()
@@ -39,7 +39,7 @@ class ContentManagerResource extends Resource
                     ->visibility('public')
                     ->directory('/uploads'),
                 Forms\Components\RichEditor::make('contentText')
-                    ->label('Açıklama')
+                    ->label('Description')
                     ->columnSpanFull()
                     ->formatStateUsing(fn ($state) => strip_tags($state))
                     ->extraInputAttributes(['sanitize' => true])
@@ -52,11 +52,11 @@ class ContentManagerResource extends Resource
         return $table
             ->columns([
                 TextColumn::make('contentTitle')
-                ->label('Başlık'),
+                ->label('Title'),
                 TextColumn::make('contentText')
                     ->words(10)
                     ->formatStateUsing(fn ($state) => strip_tags($state))
-                ->label('Açıklama'),
+                ->label('Description'),
             ])
             ->filters([
                 //

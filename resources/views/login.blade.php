@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -12,16 +13,18 @@
     @livewireStyles
 
 </head>
-<body class="font-sans antialiased dark:bg-black dark:text-white/50 ">
+
+<body class="font-sans antialiased bg-black text-white/50 ">
 
 
-<main class="p-2 mt-4 mb-12">
-    <livewire:auth.login-account/>
-</main>
-<footer class="py-16 text-center text-sm text-white dark:text-white/70 bg-gray-800 w-full absolute bottom-0">
-    <p>Bus Station ©2025 | All rights are reserved.</p>
-</footer>
-@livewireScripts
+    <main class="p-2 mt-4 mb-12">
+        <livewire:auth.login-account />
+    </main>
+    <footer class="py-16 text-center text-sm text-white bg-gray-800 w-full absolute bottom-0">
+        <p>Bus Station ©2025 | All rights are reserved.</p>
+    </footer>
+    @livewireScripts
 
 </body>
+
 </html>

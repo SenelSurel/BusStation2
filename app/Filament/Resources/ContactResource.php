@@ -18,7 +18,7 @@ class ContactResource extends Resource
 {
     protected static ?string $model = Contact::class;
 
-    protected static ?string $modelLabel = 'İletişim';
+    protected static ?string $modelLabel = 'Contacts';
     public static function canCreate(): bool
     {
         return false;
@@ -35,17 +35,17 @@ class ContactResource extends Resource
                     ->formatStateUsing(fn ($state) => strip_tags($state))
                     ->extraInputAttributes(['sanitize' => true])
                     ->maxLength(500)
-                ->label('Tanıtım'),
+                ->label('Introduction'),
                 Forms\Components\RichEditor::make('vision')
                     ->columnSpanFull()
                     ->formatStateUsing(fn ($state) => strip_tags($state))
                     ->extraInputAttributes(['sanitize' => true])
                     ->maxLength(500)
-                ->label('Vizyon'),
+                ->label('Vision'),
                 TextInput::make('address')
                 ->required()
                 ->maxLength(255)
-                ->label('Adres'),
+                ->label('Address'),
                 TextInput::make('email')
                 ->required()
                 ->email()
@@ -53,7 +53,7 @@ class ContactResource extends Resource
                 TextInput::make('phone')
                 ->required()
                 ->numeric()
-                ->label('Telefon'),
+                ->label('Phone'),
             ]);
     }
 
@@ -64,20 +64,20 @@ class ContactResource extends Resource
                 Tables\Columns\TextColumn::make('introduce')
                     ->words(3)
                     ->formatStateUsing(fn ($state) => strip_tags($state))
-                    ->label('Tanıtım'),
+                    ->label('Introduction'),
                 Tables\Columns\TextColumn::make('vision')
                     ->words(3)
                     ->formatStateUsing(fn ($state) => strip_tags($state))
-                    ->label('Vizyon'),
+                    ->label('Vision'),
                 Tables\Columns\TextColumn::make('address')
                     ->words(3)
-                    ->label('Adres'),
+                    ->label('Address'),
                 Tables\Columns\TextColumn::make('email')
                     ->words(2)
                     ->label('Email'),
                 Tables\Columns\TextColumn::make('phone')
                     ->words(3)
-                    ->label('Telefon'),
+                    ->label('Phone'),
             ])
             ->filters([
                 //
